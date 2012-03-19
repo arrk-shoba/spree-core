@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head data-hook="admin_inside_head">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spree Administration: 
+Orders</title>
+<script type="text/javascript">
+//<![CDATA[
+
+  ajax_urls = {"product_search_json":"http://www.example.com/admin/products.json","product_search_basic_json":"http://www.example.com/admin/products.json?json_format=basic&limit=10","user_search_basic_json":"http://www.example.com/admin/users.json?json_format=basic&limit=10"};
+
+  strings = {"searching":"Searching"}
+
+//]]>
+</script><link href="/assets/admin/all.css" media="screen" rel="stylesheet" type="text/css">
+<script src="/assets/admin/all.js" type="text/javascript"></script><script type="text/javascript">
+//<![CDATA[
+  jQuery.alerts.dialogClass = 'spree';
+  
+
+//]]>
+</script>
+</head>
+<body class="admin">
+<!--[if IE 7]>
+<div id='IE7'>
+<![endif]-->
+<div id="wrapper" data-hook>
+
+  <div id="header" data-hook>
+
+  <ul id="login-nav">
+<li>
+Logged in as: lori@franecki.us
+</li>
+    <li><a href="/users/2/edit">Account</a></li>
+    <li><a href="/user/logout">Logout</a></li>
+    <li><a href="/products">Store</a></li>
+  </ul>
+<a href="/admin"><img alt="Spree_50" id="logo" src="/assets/admin/bg/spree_50.png"></a>
+    <h1><a href="/admin">Administration</a></h1>
+    <div id="progress">
+<img alt="Progress" src="/assets/admin/progress.gif"> Loading...</div>
+  </div>
+
+  <div id="admin-menu" data-hook>
+    <ul data-hook="admin_tabs">
+<li class=""><a href="/admin">Overview</a></li>
+<li class="selected"><a href="/admin/orders">Orders</a></li>
+<li class=""><a href="/admin/products">Products</a></li>
+<li class=""><a href="/admin/reports">Reports</a></li>
+<li class=""><a href="/admin/configurations">Configuration</a></li>
+<li class=""><a href="/admin/users">Users</a></li>
+
+    <li class=""><a href="/admin/promotions">Promotions</a></li>
+</ul>
+<br class="clear">
+</div>
+
+  <div id="sub-menu" data-hook>
+    
+    <br class="clear">
+</div>
+
+  <div class="with-sidebar  clear tile_bg" id="content" data-hook>
+
+
+    
+
+    <div class="toolbar order-links">
+  <a href="http://www.example.com/admin/orders/new" class="button" id="admin_new_order"><span><img alt="Add" src="/assets/admin/icons/add.png"> New Order</span></a>
+</div>
+
+
+
+<h1>Listing Orders</h1>
+
+<table class="index" id="listing_orders" data-hook>
+<thead><tr data-hook="admin_orders_index_headers">
+<th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=completed_at.asc" class="sort_link desc">Completed At ▼</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=number.asc" class="sort_link">Number</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=state.asc" class="sort_link">State</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=payment_state.asc" class="sort_link">Payment State</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=shipment_state.asc" class="sort_link">Shipment State</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=email.asc" class="sort_link">Customer E-Mail</a></th>
+      <th><a href="/admin/orders?search%5Bcompleted_at_is_not_null%5D=true&amp;search%5Bmeta_sort%5D=total.asc" class="sort_link">Total</a></th>
+      <th data-hook="admin_orders_index_header_actions"></th>
+    </tr></thead>
+<tbody><tr data-hook="admin_orders_index_rows">
+<td>2012-03-09</td>
+      <td><a href="/admin/orders/R461126486">R461126486</a></td>
+      <td>complete</td>
+      <td><a href="/admin/orders/R461126486/payments">balance due</a></td>
+      <td><a href="/admin/orders/R461126486/shipments">backorder</a></td>
+      <td>ross@pouros.uk</td>
+      <td>$0.00</td>
+      <td class="actions" data-hook="admin_orders_index_row_actions">
+        <a href="/admin/orders/R461126486/edit" class="icon_link" title="admin_edit_order_1"><img alt="Edit" src="/assets/admin/icons/edit.png"> Edit</a>
+      </td>
+    </tr></tbody>
+</table>
+<br class="clear"><div id="sidebar" data-hook>
+          <div class="box" data-hook="admin_orders_index_search">
+    <h3>Search</h3>
+    <form accept-charset="UTF-8" action="/admin/orders" class="spree/order_search" id="spree/order_search" method="get">
+<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+      <label>Date Range</label><br><div class="date-range-filter">
+        <div class="left sub-field">
+          <input class="datepicker" id="search_created_at_greater_than" name="search[created_at_greater_than]" size="30" type="text"><br><label class="sub">Start</label>
+        </div>
+        <div class="right sub-field">
+          <input class="datepicker" id="search_created_at_less_than" name="search[created_at_less_than]" size="30" type="text"><br><label class="sub">Stop</label>
+        </div>
+      </div>
+
+      <p><label>Status</label><br><select id="search_state_equals" name="search[state_equals]"><option value=""></option>
+<option value="cart">cart</option>
+<option value="address">address</option>
+<option value="delivery">delivery</option>
+<option value="payment">payment</option>
+<option value="complete">complete</option>
+<option value="confirm">confirm</option>
+<option value="canceled">canceled</option>
+<option value="awaiting_return">awaiting return</option>
+<option value="returned">returned</option>
+<option value="resumed">resumed</option></select></p>
+
+      <p>
+        <label>Order</label><br><input id="search_number_like" name="search[number_like]" size="25" type="text"></p>
+      <p>
+        <label>Email</label><br><input id="search_email_like" name="search[email_like]" size="25" type="text"></p>
+      <p>
+        <label>First Name Begins With</label><br><input id="search_bill_address_firstname_starts_with" name="search[bill_address_firstname_starts_with]" size="25" type="text"></p>
+      <p>
+        <label>Last Name Begins With</label><br><input id="search_bill_address_lastname_starts_with" name="search[bill_address_lastname_starts_with]" size="25" type="text"></p>
+      <p>
+        <input name="search[completed_at_is_not_null]" type="hidden" value=""><input checked id="search_completed_at_is_not_null" name="search[completed_at_is_not_null]" type="checkbox" value="1"><label>Only show complete orders</label>
+      </p>
+      <div data-hook="admin_orders_index_search_buttons">
+        <p><button type="submit"><span> Search</span></button></p>
+      </div>
+</form>  </div>
+
+      </div>
+
+  </div>
+
+  <div id="footer" data-hook>
+    <p>Icons by <a href="http://pinvoke.com">pInvoke</a></p>
+  </div>
+
+
+</div>
+<!--[if IE]>
+</div>
+<![endif]-->
+
+<div data-hook="admin_footer_scripts"></div>
+</body>
+</html>
